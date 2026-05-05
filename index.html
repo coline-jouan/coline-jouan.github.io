@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coline Jouan · Communication</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,800;1,9..144,400&family=DM+Mono:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f4f1;
+      --navy: #1a2860;
+      --coral: #E85D50;
+      --coral-light: #ff7b6e;
+      --ink: #111120;
+      --muted: #888899;
+      --border: rgba(0,0,0,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 1.5rem;
+      background: rgba(255,255,255,.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      font-weight: 700; font-size: 1.05rem;
+      color: var(--navy); letter-spacing: -.01em;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .nav-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--coral);
+      animation: blink 2s ease infinite; flex-shrink: 0;
+    }
+    @keyframes blink {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:.4; transform:scale(.7); }
+    }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace; font-size: .68rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--coral); }
+    /* hide nav links on small screens */
+    @media (max-width: 600px) { .nav-links { display: none; } }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      padding: 100px 1.5rem 4rem;
+      display: flex; flex-direction: column; justify-content: center;
+      background: var(--bg);
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 1.5rem; right: 1.5rem;
+      height: 1px; background: var(--border);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .35rem .9rem;
+      border: 1px solid rgba(232,93,80,.3);
+      background: rgba(232,93,80,.06);
+      border-radius: 100px; margin-bottom: 2rem;
+      font-family: 'DM Mono', monospace; font-size: .68rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--coral); width: fit-content;
+    }
+    .badge-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--coral); animation: blink 1.5s ease infinite;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 800; line-height: 1;
+      letter-spacing: -.02em; margin-bottom: 1.2rem;
+      color: var(--navy);
+    }
+    h1 em { font-style: italic; color: var(--coral); }
+
+    .hero-sub {
+      font-size: clamp(.95rem, 2.5vw, 1.05rem);
+      color: var(--muted); max-width: 480px;
+      line-height: 1.8; margin-bottom: 2.5rem; font-weight: 400;
+    }
+    .hero-ctas { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+    .btn-coral {
+      background: var(--coral); color: #fff;
+      padding: .8rem 1.6rem; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: .85rem; font-weight: 500;
+      letter-spacing: .03em; text-decoration: none; border-radius: 8px;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(232,93,80,.25);
+    }
+    .btn-coral:hover { background: var(--coral-light); transform: translateY(-2px); }
+    .btn-navy {
+      background: transparent; color: var(--navy);
+      padding: .8rem 1.6rem; border: 1.5px solid var(--navy); cursor: pointer;
+      font-family: 'Inter', sans-serif; font-size: .85rem; font-weight: 500;
+      letter-spacing: .03em; text-decoration: none; border-radius: 8px;
+      transition: background .2s, color .2s;
+    }
+    .btn-navy:hover { background: var(--navy); color: #fff; }
+
+    .hero-stats {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      padding-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .stat-n {
+      font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700;
+      color: var(--navy); display: block; line-height: 1;
+    }
+    .stat-l {
+      font-family: 'DM Mono', monospace; font-size: .6rem;
+      color: var(--muted); letter-spacing: .1em; text-transform: uppercase;
+    }
+
+    /* ── SECTIONS ── */
+    section { position: relative; }
+    .section-inner {
+      padding: 4rem 1.5rem;
+      max-width: 760px; margin: 0 auto;
+    }
+    @media (min-width: 900px) {
+      .section-inner { padding: 6rem 2rem; max-width: 900px; }
+    }
+
+    .sec-tag {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      letter-spacing: .16em; text-transform: uppercase;
+      color: var(--coral); margin-bottom: .5rem;
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .sec-tag::before { content: '//'; opacity: .35; color: var(--muted); }
+
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 700; letter-spacing: -.02em; line-height: 1.05;
+      color: var(--navy); margin-bottom: .8rem;
+    }
+    .sec-lead {
+      font-size: .95rem; color: var(--muted);
+      line-height: 1.8; margin-bottom: 2.5rem;
+    }
+
+    /* ── EXPERTISES ── */
+    #expertises { background: var(--surface); }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .exp-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .exp-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.6rem;
+      transition: transform .2s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .exp-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--coral);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .3s;
+    }
+    .exp-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,.07); }
+    .exp-card:hover::before { transform: scaleX(1); }
+
+    .exp-num {
+      font-family: 'DM Mono', monospace; font-size: .6rem;
+      color: var(--coral); letter-spacing: .1em;
+      margin-bottom: .8rem; display: block;
+    }
+    .exp-card h3 {
+      font-family: 'Fraunces', serif; font-size: 1.1rem;
+      font-weight: 700; color: var(--navy);
+      margin-bottom: .6rem; line-height: 1.2;
+    }
+    .exp-card p { font-size: .86rem; color: var(--muted); line-height: 1.75; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: 1rem; }
+    .exp-tag {
+      font-family: 'DM Mono', monospace; font-size: .6rem;
+      padding: .2rem .65rem; border-radius: 100px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* ── RÉFÉRENCES ── */
+    #refs { background: #fff; }
+
+    .hcard {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.6rem; margin-bottom: 1rem;
+      position: relative; overflow: hidden;
+    }
+    .hcard::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--navy), var(--coral));
+    }
+    .hcard-label {
+      font-family: 'DM Mono', monospace; font-size: .62rem;
+      color: var(--coral); letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+    .hcard-title {
+      font-family: 'Fraunces', serif; font-size: 1.05rem;
+      font-weight: 700; color: var(--navy); margin-bottom: .4rem;
+    }
+    .hcard-desc { font-size: .86rem; color: var(--muted); line-height: 1.7; }
+
+    .refs-bottom {
+      display: grid; grid-template-columns: 1fr;
+      gap: 1rem; margin-top: 1rem;
+    }
+    @media (min-width: 640px) {
+      .refs-bottom { grid-template-columns: 1fr 1fr; }
+    }
+
+    .rod-card {
+      background: var(--navy); border-radius: 12px; padding: 1.6rem; color: #fff;
+    }
+    .rod-label {
+      font-family: 'DM Mono', monospace; font-size: .6rem;
+      color: var(--coral-light); letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: .4rem;
+    }
+    .rod-title {
+      font-family: 'Fraunces', serif; font-size: 1.05rem;
+      font-weight: 700; margin-bottom: 1rem; line-height: 1.2;
+    }
+
+    .tools-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.6rem;
+    }
+    .tools-header {
+      font-family: 'DM Mono', monospace; font-size: .6rem;
+      color: var(--coral); letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: .9rem;
+    }
+    .tools-grid { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tool-chip {
+      display: flex; align-items: center; gap: .35rem;
+      padding: .3rem .75rem;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 6px; font-size: .78rem;
+      color: var(--ink); font-weight: 400;
+      transition: border-color .2s, color .2s;
+    }
+    .tool-chip:hover { border-color: var(--coral); color: var(--coral); }
+    .tool-chip.claude {
+      border-color: rgba(232,93,80,.4);
+      background: rgba(232,93,80,.05);
+      color: var(--coral); font-weight: 500;
+    }
+
+    /* ── APPROCHE ── */
+    #approche { background: var(--surface); }
+
+    .approche-quote {
+      font-family: 'Fraunces', serif; font-size: clamp(1.3rem, 4vw, 1.7rem);
+      font-weight: 700; line-height: 1.3; color: var(--navy);
+      border-left: 3px solid var(--coral); padding-left: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .approche-quote em { font-style: italic; color: var(--coral); }
+    .approche-body { font-size: .92rem; color: var(--muted); line-height: 1.85; margin-bottom: .8rem; }
+
+    .pills { display: flex; flex-direction: column; gap: .6rem; margin-top: 2rem; }
+    .pill {
+      display: flex; align-items: flex-start; gap: .9rem;
+      padding: .9rem 1.1rem;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color .2s, transform .2s;
+    }
+    .pill:hover { border-color: var(--coral); transform: translateX(3px); }
+    .pill-icon { font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
+    .pill strong {
+      font-family: 'Inter', sans-serif; font-size: .83rem;
+      font-weight: 500; color: var(--navy); display: block; margin-bottom: .1rem;
+    }
+    .pill span { font-size: .78rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--navy); color: #fff; }
+    #contact .section-inner { max-width: 760px; }
+    #contact .sec-tag { color: var(--coral-light); }
+    #contact h2 { color: #fff; }
+    #contact .sec-lead { color: rgba(255,255,255,.55); margin-bottom: 1.5rem; }
+
+    .contact-links { display: flex; flex-direction: column; gap: .75rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: .9rem;
+      padding: 1.1rem 1.3rem;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px; text-decoration: none; color: #fff;
+      transition: border-color .2s, background .2s, transform .15s;
+    }
+    .contact-link:hover {
+      border-color: var(--coral); background: rgba(232,93,80,.1);
+      transform: translateX(4px);
+    }
+    .contact-link svg { width: 17px; height: 17px; fill: var(--coral); flex-shrink: 0; }
+    .contact-link strong { display: block; font-size: .85rem; font-weight: 500; }
+    .contact-link span { font-size: .75rem; color: rgba(255,255,255,.45); }
+    .contact-arrow { color: rgba(255,255,255,.25); margin-left: auto; transition: color .2s; }
+    .contact-link:hover .contact-arrow { color: var(--coral); }
+    .contact-note {
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      color: rgba(255,255,255,.3); letter-spacing: .05em;
+      margin-top: 1.2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 1.2rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: .5rem;
+      font-family: 'DM Mono', monospace; font-size: .65rem;
+      color: rgba(255,255,255,.25); letter-spacing: .05em;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-dot"></div>
+    Coline Jouan
+  </div>
+  <ul class="nav-links">
+    <li><a href="#expertises">Expertises</a></li>
+    <li><a href="#refs">Références</a></li>
+    <li><a href="#approche">Approche</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    Disponible pour missions &amp; contrats
+  </div>
+  <h1>
+    Communication<br>
+    <em>15 ans</em><br>
+    d'expérience
+  </h1>
+  <p class="hero-sub">Stratégie social media, relations presse, création de contenus, gestion de projets. Du privé au public, de la startup à la collectivité.</p>
+  <div class="hero-ctas">
+    <a href="#contact" class="btn-coral">Me contacter</a>
+    <a href="#expertises" class="btn-navy">Mes expertises</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <span class="stat-n">15</span>
+      <span class="stat-l">ans d'xp</span>
+    </div>
+    <div>
+      <span class="stat-n">20+</span>
+      <span class="stat-l">clients</span>
+    </div>
+    <div>
+      <span class="stat-n">3</span>
+      <span class="stat-l">secteurs</span>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERTISES -->
+<section id="expertises">
+  <div class="section-inner">
+    <p class="sec-tag reveal">Ce que je fais</p>
+    <h2 class="reveal">Expertises</h2>
+    <p class="sec-lead reveal">Un spectre large, une approche cohérente. À l'aise dans la réflexion stratégique comme dans l'exécution opérationnelle.</p>
+    <div class="exp-grid reveal">
+
+      <div class="exp-card">
+        <span class="exp-num">01</span>
+        <h3>Stratégie social media</h3>
+        <p>Audit, définition de ligne éditoriale, pilotage de présence sur tous les réseaux sociaux. Analyses, préconisations, rédaction de social media guidelines et sensibilisation en interne aux usages digitaux.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Stratégie</span>
+          <span class="exp-tag">Guidelines</span>
+          <span class="exp-tag">Reporting</span>
+          <span class="exp-tag">Formation interne</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <span class="exp-num">02</span>
+        <h3>Gestion de projet communication</h3>
+        <p>Direction de projets com de A à Z : planification, coordination prestataires et équipes internes, AMO pour la réalisation de sites web, suivi de livrables.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">AMO web</span>
+          <span class="exp-tag">Coordination</span>
+          <span class="exp-tag">Planning</span>
+          <span class="exp-tag">Budget</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <span class="exp-num">03</span>
+        <h3>Création de contenus</h3>
+        <p>Rédaction d'articles, posts réseaux sociaux, newsletters, contenus web. Création de visuels, maîtrise des outils IA et de leurs limites. Sobriété éditoriale, capacité à construire et tenir un discours de marque.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Rédaction</span>
+          <span class="exp-tag">Visuels</span>
+          <span class="exp-tag">IA</span>
+          <span class="exp-tag">SEO</span>
+          <span class="exp-tag">Newsletters</span>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <span class="exp-num">04</span>
+        <h3>Relations presse</h3>
+        <p>Ma formation initiale et mon début de carrière. Rédaction de communiqués, organisation de conférences de presse et voyages de presse, gestion d'accréditations, veille et bilan presse.</p>
+        <div class="exp-tags">
+          <span class="exp-tag">Communiqués</span>
+          <span class="exp-tag">Conférences</span>
+          <span class="exp-tag">Accréditations</span>
+          <span class="exp-tag">Veille</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RÉFÉRENCES -->
+<section id="refs">
+  <div class="section-inner">
+    <p class="sec-tag reveal">Où j'ai travaillé</p>
+    <h2 class="reveal">Références</h2>
+
+    <div class="hcard reveal">
+      <p class="hcard-label">2023 à présent · Collectivité</p>
+      <p class="hcard-title">Social Media Manager, Métropole de Lyon</p>
+      <p class="hcard-desc">Pilotage de la stratégie social media pour l'une des premières collectivités de France. Présence sur 5 plateformes, coordination avec toutes les délégations (mobilités, culture, environnement, habitat...), sensibilisation interne aux usages digitaux.</p>
+    </div>
+
+    <div class="hcard reveal">
+      <p class="hcard-label">2013 à 2023 · 10 ans · Entrepreneuriat</p>
+      <p class="hcard-title">Fondatrice &amp; dirigeante, Owly Birdy</p>
+      <p class="hcard-desc">Création et direction d'une agence de conseil et production en communication digitale pendant 10 ans. Accompagnement de PME, grands groupes et institutions souhaitant investir les réseaux sociaux de façon stratégique.</p>
+    </div>
+
+    <div class="refs-bottom reveal">
+      <div class="rod-card">
+        <p class="rod-label">Références clients</p>
+        <p class="rod-title">Disponibles sur demande</p>
+        <a href="#contact" class="btn-coral" style="font-size:.78rem;padding:.6rem 1.2rem;display:inline-block;">Me contacter</a>
+      </div>
+      <div class="tools-card">
+        <p class="tools-header">// À l'aise avec</p>
+        <div class="tools-grid">
+          <span class="tool-chip">🗂 Trello</span>
+          <span class="tool-chip">✅ Asana</span>
+          <span class="tool-chip">🌐 WordPress</span>
+          <span class="tool-chip">🔧 TYPO3</span>
+          <span class="tool-chip">🎨 Canva</span>
+          <span class="tool-chip">🎬 CapCut</span>
+          <span class="tool-chip">📅 Agorapulse</span>
+          <span class="tool-chip">📡 Visibrain</span>
+          <span class="tool-chip claude">✦ Claude</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROCHE -->
+<section id="approche">
+  <div class="section-inner">
+    <p class="sec-tag reveal">Comment je travaille</p>
+    <h2 class="reveal">Mon approche</h2>
+    <div class="reveal">
+      <p class="approche-quote">Le bon équilibre entre <em>process</em> et <em>souplesse</em>, c'est ce qui fait que les projets avancent vraiment.</p>
+      <p class="approche-body">15 ans sur le terrain m'ont appris qu'un bon cadre de travail ne bride pas : il libère. Je construis des méthodes solides, des process clairs, tout en gardant la capacité de m'adapter vite quand la situation l'exige.</p>
+      <p class="approche-body">Passionnée par la psychologie, la sociologie, la santé, l'environnement et les solidarités. Ces sujets nourrissent ma façon de communiquer, avec sincérité et sens.</p>
+      <p style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.05em;margin-top:1rem;">📍 Lyon &amp; périphérie · Remote possible</p>
+    </div>
+    <div class="pills reveal">
+      <div class="pill">
+        <span class="pill-icon">🧭</span>
+        <div><strong>Vision globale</strong><span>Cohérence entre RP, social, édito et événementiel</span></div>
+      </div>
+      <div class="pill">
+        <span class="pill-icon">⚙️</span>
+        <div><strong>Process &amp; rigueur</strong><span>Méthodes éprouvées, livrables dans les délais</span></div>
+      </div>
+      <div class="pill">
+        <span class="pill-icon">🤸</span>
+        <div><strong>Adaptabilité</strong><span>Startup, collectivité, grand groupe : je m'adapte</span></div>
+      </div>
+      <div class="pill">
+        <span class="pill-icon">✍️</span>
+        <div><strong>Plume &amp; storytelling</strong><span>Sobriété éditoriale, multi-formats, expérience solide</span></div>
+      </div>
+      <div class="pill">
+        <span class="pill-icon">🌱</span>
+        <div><strong>Sens &amp; engagement</strong><span>Environnement, solidarités, santé : pas que pour l'image</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="sec-tag">Travaillons ensemble</p>
+    <h2>Vous avez<br>un projet ?</h2>
+    <p class="sec-lead">Disponible pour des missions freelance, des contrats ou du consulting. Je réponds rapidement.</p>
+    <div class="contact-links">
+      <a href="mailto:coline.jouan@gmail.com" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <div><strong>Email</strong><span>coline.jouan@gmail.com</span></div>
+        <span class="contact-arrow">→</span>
+      </a>
+      <a href="https://www.linkedin.com/in/colinejouan" target="_blank" class="contact-link">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <div><strong>LinkedIn</strong><span>linkedin.com/in/colinejouan</span></div>
+        <span class="contact-arrow">→</span>
+      </a>
+    </div>
+    <p class="contact-note">📍 Lyon &amp; périphérie · Remote bienvenu</p>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Coline Jouan</span>
+  <span>Lyon, France</span>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 70);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
